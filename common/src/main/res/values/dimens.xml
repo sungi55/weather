@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_list_icon_width">56dp</dimen>
+    <dimen name="default_list_icon_height">56dp</dimen>
+    <dimen name="default_icon_width">24dp</dimen>
+    <dimen name="default_icon_height">24dp</dimen>
+    <dimen name="detail_poster_height">200dp</dimen>
+</resources>

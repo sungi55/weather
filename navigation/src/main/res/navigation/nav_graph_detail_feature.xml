@@ -9,23 +9,10 @@
               android:name="com.sunhurov.detail.DetailFragment"
               android:label="Detail">
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="key"
+            app:argType="string" />
 
-
-        <action android:id="@+id/action_detailFragment_to_imageDetailFragment"
-                app:destination="@id/imageDetailFragment"
-                app:enterAnim="@anim/nav_default_pop_enter_anim"
-                app:exitAnim="@anim/nav_default_pop_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
-    <!-- Image Detail Fragment -->
-    <fragment android:id="@+id/imageDetailFragment"
-              android:name="com.sunhurov.detail.DetailImageFragment"
-              android:label="Movie's poster">
-        <argument android:name="imageUrl" app:argType="string"/>
-    </fragment>
 
 </navigation>

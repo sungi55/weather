@@ -1,7 +1,10 @@
+include ':feature:home'
 rootProject.name = "Weather"
 include ':app'
 include ':common'
 include ':navigation'
+
+include ':features:home'
 
 include ':data:repository'
 include ':data:remote'

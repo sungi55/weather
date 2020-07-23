@@ -29,7 +29,7 @@ dependencies {
     implementation project(Modules.remote)
     implementation project(Modules.repository)
     // FEATURES modules
-//    implementation project(Modules.featureHome)
+    implementation project(Modules.featureHome)
 //    implementation project(Modules.featureDetail)
 //    implementation project(Modules.featureSearch)
     // NAVIGATION

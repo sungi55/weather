@@ -6,20 +6,20 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.sunhurov.local.converter.Converters
-import com.sunhurov.local.dao.WeatherDao
-import com.sunhurov.model.Weather
+import com.sunhurov.local.dao.LocationDao
+import com.sunhurov.model.Location
 
-@Database(entities = [Weather::class], version = 2, exportSchema = false)
+@Database(entities = [Location::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 
     // DAO
-    abstract fun weatherDao(): WeatherDao
+    abstract fun locationDao(): LocationDao
 
     companion object {
 
         fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "MovieApp.db")
+            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "WeatherApp.db")
                 .build()
     }
 }

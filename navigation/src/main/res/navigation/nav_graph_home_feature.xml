@@ -13,8 +13,8 @@
         <action android:id="@+id/action_homeFragment_to_detailFragment"
                 app:destination="@id/nav_graph_detail_feature">
             <argument
-                android:name="id"
-                app:argType="integer" />
+                android:name="key"
+                app:argType="string" />
         </action>
 
         <!-- Go to Search Fragment (Its graph is responsible to handle response) -->

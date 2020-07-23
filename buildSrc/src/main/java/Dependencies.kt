@@ -32,7 +32,7 @@ object Releases {
 
 object Versions {
     val kotlin = "1.3.72"
-    val gradle = "4.0.1"
+    val gradle = "3.3.2"
     val compileSdk = 29
     val minSdk = 23
     val targetSdk = 29
@@ -40,9 +40,6 @@ object Versions {
     val multidex = "1.0.3"
     val coreKtx = "1.2.0"
     val constraintLayout = "1.1.3"
-    val junit = "4.12"
-    val androidTestRunner = "1.1.2-alpha02"
-    val espressoCore = "3.2.0-alpha02"
     val retrofit = "2.8.1"
     val retrofitCoroutines = "0.9.2"
     val retrofitGson = "2.8.1"

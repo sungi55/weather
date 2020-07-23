@@ -2,3 +2,8 @@ rootProject.name = "Weather"
 include ':app'
 include ':common'
 include ':navigation'
+
+include ':data:repository'
+include ':data:remote'
+include ':data:local'
+include ':data:model'

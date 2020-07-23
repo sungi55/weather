@@ -24,11 +24,11 @@ android {
 dependencies {
     // COMMON
     implementation project(Modules.common)
-//    // DATA modules
-//    implementation project(Modules.local)
-//    implementation project(Modules.remote)
-//    implementation project(Modules.repository)
-//    // FEATURES modules
+    // DATA modules
+    implementation project(Modules.local)
+    implementation project(Modules.remote)
+    implementation project(Modules.repository)
+    // FEATURES modules
 //    implementation project(Modules.featureHome)
 //    implementation project(Modules.featureDetail)
 //    implementation project(Modules.featureSearch)

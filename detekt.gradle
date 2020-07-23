@@ -1,0 +1,4 @@
+detekt {
+    config = files("$rootDir/default-detekt-config.yml")
+    filters = ".*build.*,.*/resources/.*,.*/tmp/.*"
+}

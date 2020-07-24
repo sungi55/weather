@@ -31,7 +31,7 @@ dependencies {
     // FEATURES modules
     implementation project(Modules.featureHome)
 //    implementation project(Modules.featureDetail)
-//    implementation project(Modules.featureSearch)
+    implementation project(Modules.featureSearch)
     // NAVIGATION
     implementation project(Modules.navigation)
     // KOIN

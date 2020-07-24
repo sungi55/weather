@@ -1,21 +1,18 @@
 package com.sunhurov.local.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.sunhurov.model.Location
 
 @Dao
-abstract class LocationDao: BaseDao<Location>() {
+abstract class LocationDao {
 
     @Query("SELECT * FROM Location")
-    abstract suspend fun getLocations(): List<Location>
+    abstract suspend fun loadAll(): List<Location>
 
-    suspend fun save(location: Location) {
-        insert(location)
-    }
+    @Delete
+    abstract suspend fun delete(location: Location)
 
-    suspend fun save(locations: List<Location>) {
-        insert(locations)
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insert(location: Location)
 
 }

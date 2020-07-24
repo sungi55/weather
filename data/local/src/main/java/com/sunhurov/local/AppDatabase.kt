@@ -9,7 +9,7 @@ import com.sunhurov.local.converter.Converters
 import com.sunhurov.local.dao.LocationDao
 import com.sunhurov.model.Location
 
-@Database(entities = [Location::class], version = 3, exportSchema = false)
+@Database(entities = [Location::class], version = 8, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 

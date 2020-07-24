@@ -11,7 +11,9 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Location(
 
-    @PrimaryKey val id: Int,
+    @SerializedName("Key")
+    @PrimaryKey
+    var key: String,
 
     @SerializedName("AdministrativeArea")
     @Embedded
@@ -20,10 +22,6 @@ data class Location(
     @SerializedName("Country")
     @Embedded
     var country: Country? = null,
-
-    @SerializedName("Key")
-    @ColumnInfo(name = "key")
-    var key: String? = null,
 
     @SerializedName("LocalizedName")
     @ColumnInfo(name = "localized_name")

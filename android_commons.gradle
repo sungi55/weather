@@ -12,14 +12,14 @@ android {
     buildTypes {
         debug {
 
-            buildConfigField("String", "BASE_URL", "\"http://apidev.accuweather.com/\"")
+            buildConfigField("String", "BASE_URL", "\"http://dataservice.accuweather.com/\"")
             buildConfigField("String", "IMAGE_URL", "\"http://apidev.accuweather.com/\"")
             buildConfigField("String", "API_KEY", "\"70C5CfpTCUPiZfyikozsAishG8EZeNqW\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"http://apidev.accuweather.com/\"")
+            buildConfigField("String", "BASE_URL", "\"http://dataservice.accuweather.com/\"")
             buildConfigField("String", "IMAGE_URL", "\"http://apidev.accuweather.com/\"")
             buildConfigField("String", "API_KEY", "\"70C5CfpTCUPiZfyikozsAishG8EZeNqW\"")
         }

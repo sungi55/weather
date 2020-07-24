@@ -16,8 +16,7 @@ class HomeItemDiffCallback(
             = oldList[oldItemPosition] == newList[newItemPosition]
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
-                && oldList[oldItemPosition].key == newList[newItemPosition].key
+        return  oldList[oldItemPosition].key == newList[newItemPosition].key
 
     }
 }

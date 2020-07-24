@@ -30,7 +30,9 @@ object HomeBinding {
     @JvmStatic
     fun showMessageErrorWhenEmptyList(view: View, resource: Resource<List<Location>>?) {
         if (resource!=null) {
-            view.visibility = if (resource.status == Resource.Status.ERROR
+            view.visibility = if (
+                (resource.status == Resource.Status.ERROR
+                        || resource.status == Resource.Status.SUCCESS)
                 && resource.data != null
                 && resource.data!!.isEmpty()) View.VISIBLE else View.GONE
         }

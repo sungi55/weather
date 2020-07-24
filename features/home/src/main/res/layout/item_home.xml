@@ -31,7 +31,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:gravity="center_horizontal"
+            android:gravity="center_vertical"
             android:text='@{location.localizedName+", "+location.component3().localizedName}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_open_details"
@@ -40,16 +40,14 @@
 
         <ImageView
             android:id="@+id/image_open_details"
-            style="?android:attr/imageButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/white"
-            android:onClick="@{() -> viewmodel.locationClicksOnItem(location)}"
+            android:onClick="@{() -> viewmodel.locationClicksOnClear(location)}"
             android:padding="8dp"
-            android:src="@drawable/ic_round_open_in_new_24"
+            android:src="@drawable/ic_round_clear_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

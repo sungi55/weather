@@ -15,7 +15,9 @@ android {
         jvmTarget = '1.8'
     }
 
-    dependencies {
-        kapt  AndroidLibraries.lifecycleCompiler
-    }
+
+}
+
+dependencies {
+    kapt  AndroidLibraries.lifecycleCompiler
 }

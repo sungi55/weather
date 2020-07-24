@@ -10,10 +10,6 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Country(
 
-    @PrimaryKey
-    @ColumnInfo(name = "country_id")
-    val id: Int,
-
     @SerializedName("ID")
     @ColumnInfo(name = "country_code")
     var iD: String? = null,

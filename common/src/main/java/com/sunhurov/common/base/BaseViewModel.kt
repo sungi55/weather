@@ -24,4 +24,5 @@ abstract class BaseViewModel: ViewModel() {
         _navigation.value = Event(NavigationCommand.To(directions))
     }
 
+
 }

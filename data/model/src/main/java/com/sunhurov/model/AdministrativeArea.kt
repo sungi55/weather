@@ -5,14 +5,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import javax.annotation.Generated
 
 
 @Entity
 data class AdministrativeArea(
-
-    @PrimaryKey
-    @ColumnInfo(name = "area_id")
-    val id: Int,
 
     @SerializedName("ID")
     @ColumnInfo(name = "area_code")

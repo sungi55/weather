@@ -1,8 +1,8 @@
 package com.sunhurov.remote.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.sunhurov.remote.LocationDatasource
-import com.sunhurov.remote.LocationService
+import com.sunhurov.remote.WeatherDatasource
+import com.sunhurov.remote.WeatherService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,7 +29,7 @@ fun createRemoteModule(baseUrl: String) = module {
             .build()
     }
 
-    factory{ get<Retrofit>().create(LocationService::class.java) }
+    factory{ get<Retrofit>().create(WeatherService::class.java) }
 
-    factory { LocationDatasource(get()) }
+    factory { WeatherDatasource(get()) }
 }

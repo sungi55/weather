@@ -6,7 +6,7 @@
 
     <!-- Detail Fragment -->
     <fragment android:id="@+id/detailFragment"
-              android:name="com.sunhurov.detail.DetailFragment"
+              android:name="com.sunhurov.details.DetailFragment"
               android:label="Detail">
         <argument
             android:name="key"

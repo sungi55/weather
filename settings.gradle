@@ -5,6 +5,7 @@ include ':navigation'
 
 include ':features:home'
 include ':features:search'
+include ':features:details'
 
 include ':data:repository'
 include ':data:remote'

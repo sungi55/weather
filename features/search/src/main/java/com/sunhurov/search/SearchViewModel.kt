@@ -77,13 +77,11 @@ class SearchViewModel(
         withContext(dispatchers.io) {
             saveLocationUseCase(location)
         }
-//        openDetailFragment(location)
+        openDetailFragment(location)
     }
 
     private fun openDetailFragment(location: Location) {
-        location.key?.let {
-            navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(it))
-        }
+        navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(location.key))
     }
 
 }

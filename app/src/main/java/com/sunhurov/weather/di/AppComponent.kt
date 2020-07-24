@@ -1,6 +1,7 @@
 package com.sunhurov.weather.di
 
 import com.sunhurov.common.BuildConfig
+import com.sunhurov.details.di.featureDetailModule
 import com.sunhurov.home.di.featureHomeModule
 import com.sunhurov.local.di.localModule
 import com.sunhurov.remote.di.createRemoteModule
@@ -12,5 +13,6 @@ val appComponent = listOf(
     repositoryModule,
     localModule,
     featureHomeModule,
+    featureDetailModule,
     featureSearchModule
 )

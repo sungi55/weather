@@ -1,26 +1,20 @@
-package com.sunhurov.repository
+package com.sunhurov.repository.location
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sunhurov.local.dao.LocationDao
 import com.sunhurov.model.Location
-import com.sunhurov.remote.LocationDatasource
+import com.sunhurov.remote.WeatherDatasource
+import com.sunhurov.repository.BuildConfig
 import com.sunhurov.repository.utils.Resource
 import kotlinx.coroutines.*
 import java.lang.Exception
 import kotlin.coroutines.coroutineContext
 
-interface LocationRepository {
-    suspend fun getLocationsWithCache(): LiveData<Resource<List<Location>>>
-    suspend fun saveLocation(location: Location)
-    suspend fun searchLocationsByKeyword(keyword: String): LiveData<Resource<List<Location>>>
-    suspend fun deleteLocation(location: Location): LiveData<Resource<List<Location>>>
-}
-
 class LocationRepositoryImpl(
     private val dao: LocationDao,
-    private val datasource:LocationDatasource
+    private val datasource:WeatherDatasource
 ): LocationRepository {
 
     override suspend fun getLocationsWithCache(): LiveData<Resource<List<Location>>> {

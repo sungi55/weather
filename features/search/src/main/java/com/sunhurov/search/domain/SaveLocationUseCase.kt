@@ -2,7 +2,7 @@ package com.sunhurov.search.domain
 
 import androidx.lifecycle.LiveData
 import com.sunhurov.model.Location
-import com.sunhurov.repository.LocationRepository
+import com.sunhurov.repository.location.LocationRepository
 import com.sunhurov.repository.utils.Resource
 
 /**

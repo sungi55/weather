@@ -20,7 +20,7 @@ object Modules {
     val repository = ":data:repository"
 
     val featureHome = ":features:home"
-    val featureDetail = ":features:detail"
+    val featureDetail = ":features:details"
     val featureSearch = ":features:search"
 }
 
@@ -47,14 +47,12 @@ object Versions {
     val okHttp = "3.11.0"
     val coroutines = "1.3.6"
     val koin = "2.1.5"
-    val timber = "4.7.1"
     val lifecycle = "2.2.0"
     val nav = "2.3.0-alpha06"
     val room = "2.2.5"
     val recyclerview = "1.1.0"
     val safeArgs = "2.3.0"
     val glide = "4.11.0"
-    val databinding = "3.3.2"
 }
 
 object Libraries {
@@ -71,7 +69,6 @@ object Libraries {
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGson}"
     val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
-    val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     // GLIDE
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"

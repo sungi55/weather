@@ -7,9 +7,13 @@
     <!-- Detail Fragment -->
     <fragment android:id="@+id/detailFragment"
               android:name="com.sunhurov.details.DetailFragment"
-              android:label="Detail">
+              android:label="{title}">
         <argument
             android:name="key"
+            app:argType="string" />
+
+        <argument
+            android:name="title"
             app:argType="string" />
 
     </fragment>

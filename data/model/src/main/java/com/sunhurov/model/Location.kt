@@ -16,12 +16,12 @@ data class Location(
     var key: String,
 
     @SerializedName("AdministrativeArea")
-    @Embedded
-    var administrativeArea: AdministrativeArea? = null,
+    @Embedded(prefix = "admin_area_")
+    var administrativeArea: Region? = null,
 
     @SerializedName("Country")
-    @Embedded
-    var country: Country? = null,
+    @Embedded(prefix = "country_")
+    var country: Region? = null,
 
     @SerializedName("LocalizedName")
     @ColumnInfo(name = "localized_name")

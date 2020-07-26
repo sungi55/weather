@@ -10,5 +10,4 @@ val localModule = module {
     factory { get<AppDatabase>().locationDao()}
     factory { get<AppDatabase>().currentConditionDao()}
     factory { get<AppDatabase>().hourlyForecastDao()}
-    factory { get<AppDatabase>().dailyForecastDao()}
 }

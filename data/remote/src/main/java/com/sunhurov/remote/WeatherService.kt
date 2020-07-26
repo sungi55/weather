@@ -1,7 +1,6 @@
 package com.sunhurov.remote
 
 import com.sunhurov.model.CurrentCondition
-import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.model.Location
 import kotlinx.coroutines.Deferred
@@ -20,8 +19,9 @@ interface WeatherService {
     @GET("/currentconditions/v1/{location_key}")
     fun fetchCurrentConditionByLocationKeyAsync(
         @Path("location_key") locationKey: String,
-        @Query("apikey") apiKey: String
-    ): Deferred<CurrentCondition>
+        @Query("apikey") apiKey: String,
+        @Query("details") metric: Boolean = true
+    ): Deferred<List<CurrentCondition>>
 
 
     @GET("/forecasts/v1/hourly/12hour/{location_key}")
@@ -30,12 +30,5 @@ interface WeatherService {
         @Query("apikey") apiKey: String,
         @Query("metric") metric: Boolean = true
     ): Deferred<List<HourlyForecast>>
-
-    @GET(" /forecasts/v1/daily/5day/{location_key}")
-    fun fetch5DaysForecastByLocationKeyAsync(
-        @Path("location_key") locationKey: String,
-        @Query("apikey") apiKey: String,
-        @Query("metric") metric: Boolean = true
-    ): Deferred<List<DailyForecast>>
 
 }

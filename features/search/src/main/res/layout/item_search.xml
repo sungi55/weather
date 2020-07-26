@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-                name="location"
-                type="com.sunhurov.model.Location" />
+            name="location"
+            type="com.sunhurov.model.Location" />
         <variable
-                name="viewmodel"
-                type="com.sunhurov.search.SearchViewModel" />
+            name="viewmodel"
+            type="com.sunhurov.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_home_root"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{() -> viewmodel.locationClicksOnItem(location)}"
-            tools:context=".HomeFragment">
+        android:id="@+id/item_home_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/card_layout_background"
+        android:onClick="@{() -> viewmodel.locationClicksOnItem(location)}"
+        tools:context=".SearchFragment">
 
         <ImageView
             android:id="@+id/imageView"
@@ -44,7 +49,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:text='@{location.localizedName+", "+location.component3().localizedName}'
+            android:ellipsize="marquee"
+            android:text='@{location.localizedName+", "+location.country.localizedName+", "+location.administrativeArea.localizedName}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"

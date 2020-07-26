@@ -1,36 +1,51 @@
 package com.sunhurov.model
 
+
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import java.util.*
 import java.util.concurrent.TimeUnit
-
-/**
- * Created by Yurii Sunhurov on 24.07.2020
- */
 
 @Entity
 data class CurrentCondition(
 
     @PrimaryKey
-    val id:Int,
+    var key:String,
 
-    val min:Int,
+    @SerializedName("EpochTime")
+    var epochTime: Int? = null,
 
-    val max:Int,
+    @SerializedName("LocalObservationDateTime")
+    var localObservationDateTime: String? = null,
 
-    val icon:Int,
+    @Embedded
+    @SerializedName("Pressure")
+    var pressure: Pressure? = null,
 
-    val metric: String,
+    @SerializedName("RelativeHumidity")
+    var relativeHumidity: Int? = null,
 
-    val time:Long,
+    @Embedded(prefix = "current_temp_")
+    @SerializedName("Temperature")
+    var temperature: Temperature? = null,
+
+    @SerializedName("WeatherIcon")
+    var weatherIcon: Int? = null,
+
+    @SerializedName("WeatherText")
+    var weatherText: String? = null,
+
+    @Embedded
+    @SerializedName("Wind")
+    var wind: Wind? = null,
 
     var lastRefreshed: Date
-
 ) {
     /**
      * We consider that an [CurrentCondition] is outdated when the last time
-     * we fetched it was more than 10 minutes
+     * we fetched it was more than 10 min
      */
     fun haveToRefreshFromNetwork() : Boolean
             = TimeUnit.MILLISECONDS.toMinutes(Date().time - lastRefreshed.time) >= 10

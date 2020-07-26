@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">Weather</string>
+    <string name="app_name">Weather App</string>
     <string name="text_location_history_is_empty">Location history is empty!</string>
+    <string name="an_error_happened">An error happened. Please try again!</string>
+    <string name="text_hourly_forecast_error">Hourly forecast is empty. Please try again!</string>
+    <string name="error_image_description">error image</string>
+    <string name="text_wind_direction_speed_format">Wind: %s - %.1f %s</string>
+    <string name="text_humidity_format">Humidity: %d%%</string>
+    <string name="text_temperature_format">%.1f °%s</string>
 </resources>

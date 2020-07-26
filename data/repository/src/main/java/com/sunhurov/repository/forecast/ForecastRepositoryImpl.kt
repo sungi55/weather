@@ -2,10 +2,8 @@ package com.sunhurov.repository.forecast
 
 import androidx.lifecycle.LiveData
 import com.sunhurov.local.dao.CurrentConditionDao
-import com.sunhurov.local.dao.DailyForecastDao
 import com.sunhurov.local.dao.HourlyForecastDao
 import com.sunhurov.model.CurrentCondition
-import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.remote.WeatherDatasource
 import com.sunhurov.repository.BuildConfig
@@ -16,8 +14,7 @@ import kotlinx.coroutines.Deferred
 class ForecastRepositoryImpl(
     private val weatherDatasource: WeatherDatasource,
     private val currentCondition: CurrentConditionDao,
-    private val hourlyForecastDao: HourlyForecastDao,
-    private val dailyForecastDao: DailyForecastDao
+    private val hourlyForecastDao: HourlyForecastDao
 ): ForecastRepository {
 
 
@@ -25,13 +22,16 @@ class ForecastRepositoryImpl(
         locationKey: String,
         forceRefresh: Boolean
     ): LiveData<Resource<CurrentCondition>> {
-        return object : NetworkBoundResource<CurrentCondition, CurrentCondition>() {
+        return object : NetworkBoundResource<CurrentCondition, List<CurrentCondition>>() {
 
-            override fun processResponse(response:CurrentCondition): CurrentCondition
-                    = response
+            override fun processResponse(response:List<CurrentCondition>): CurrentCondition
+                    = response.first()
 
-            override suspend fun saveCallResults(items: CurrentCondition)
-                    = currentCondition.save(items)
+            override suspend fun saveCallResults(items: CurrentCondition){
+                currentCondition.deleteByLocationKey(locationKey)
+                currentCondition.save(items, locationKey)
+            }
+
 
             override fun shouldFetch(data: CurrentCondition?): Boolean
                     = data == null
@@ -39,12 +39,13 @@ class ForecastRepositoryImpl(
                     || forceRefresh
 
             override suspend fun loadFromDb(): CurrentCondition
-                    = currentCondition.loadCondition()
+                    = currentCondition.loadByLocationKey(locationKey)
 
-            override fun createCallAsync(): Deferred<CurrentCondition> {
-                return  weatherDatasource.fetchCurrentCondition(
+            override fun createCallAsync(): Deferred<List<CurrentCondition>> {
+                return  weatherDatasource.fetchCurrentConditionAsync(
                     apiKey = BuildConfig.API_KEY,
-                    locationKey = locationKey)
+                    locationKey = locationKey
+                )
             }
 
         }.build().asLiveData()
@@ -60,8 +61,10 @@ class ForecastRepositoryImpl(
             override fun processResponse(response:List<HourlyForecast>): List<HourlyForecast>
                     = response
 
-            override suspend fun saveCallResults(items: List<HourlyForecast>)
-                    = hourlyForecastDao.save(items)
+            override suspend fun saveCallResults(items: List<HourlyForecast>){
+                hourlyForecastDao.deleteByLocationKey(locationKey)
+                hourlyForecastDao.save(items,  locationKey)
+            }
 
             override fun shouldFetch(data: List<HourlyForecast>?): Boolean
                     = data == null
@@ -70,42 +73,13 @@ class ForecastRepositoryImpl(
                     || forceRefresh
 
             override suspend fun loadFromDb(): List<HourlyForecast>
-                    = hourlyForecastDao.loadHourlyForecast()
+                    = hourlyForecastDao.loadHourlyForecast(locationKey)
 
             override fun createCallAsync(): Deferred<List<HourlyForecast>> {
-                return  weatherDatasource.fetchHourlyForecast(
+                return  weatherDatasource.fetchHourlyForecastAsync(
                     apiKey = BuildConfig.API_KEY,
-                    locationKey = locationKey)
-            }
-
-        }.build().asLiveData()
-    }
-
-    override suspend fun getDailyForecast(
-        locationKey: String,
-        forceRefresh: Boolean
-    ): LiveData<Resource<List<DailyForecast>>> {
-        return object : NetworkBoundResource<List<DailyForecast>, List<DailyForecast>>() {
-
-            override fun processResponse(response:List<DailyForecast>): List<DailyForecast>
-                    = response
-
-            override suspend fun saveCallResults(items: List<DailyForecast>)
-                    = dailyForecastDao.save(items)
-
-            override fun shouldFetch(data: List<DailyForecast>?): Boolean
-                    = data == null
-                    || data.isEmpty()
-                    || data.last().haveToRefreshFromNetwork()
-                    || forceRefresh
-
-            override suspend fun loadFromDb(): List<DailyForecast>
-                    = dailyForecastDao.loadDailyForecast()
-
-            override fun createCallAsync(): Deferred<List<DailyForecast>> {
-                return  weatherDatasource.fetchDailyForecast(
-                    apiKey = BuildConfig.API_KEY,
-                    locationKey = locationKey)
+                    locationKey = locationKey
+                )
             }
 
         }.build().asLiveData()

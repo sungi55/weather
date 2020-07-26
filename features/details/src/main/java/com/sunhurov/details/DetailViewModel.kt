@@ -1,14 +1,10 @@
 package com.sunhurov.details
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sunhurov.common.base.BaseViewModel
 import com.sunhurov.common.utils.Event
 import com.sunhurov.detail.R
 import com.sunhurov.details.domain.GetCurrentConditionUseCase
-import com.sunhurov.details.domain.GetDailyForecastUseCase
 import com.sunhurov.details.domain.GetHourlyForecastUseCase
 import com.sunhurov.model.CurrentCondition
 import com.sunhurov.model.DailyForecast
@@ -26,7 +22,6 @@ import kotlinx.coroutines.withContext
 class DetailViewModel(
     private val getCurrentConditionUseCase: GetCurrentConditionUseCase,
     private val getHourlyForecastUseCase: GetHourlyForecastUseCase,
-    private val getDailyForecastUseCase: GetDailyForecastUseCase,
     private val dispatchers: AppDispatchers
 ): BaseViewModel() {
 
@@ -34,33 +29,37 @@ class DetailViewModel(
     private var argsLocationKey: String = ""
     private var currentConditionSource: LiveData<Resource<CurrentCondition>> = MutableLiveData()
     private var hourlyForecastSource: LiveData<Resource<List<HourlyForecast>>> = MutableLiveData()
-    private var dailyForecastSource: LiveData<Resource<List<DailyForecast>>> = MutableLiveData()
 
-    private val _currentCondition = MediatorLiveData<Resource<CurrentCondition>>()
+    private val _currentCondition = MediatorLiveData<CurrentCondition>()
     private val _hourlyForecast = MediatorLiveData<Resource<List<HourlyForecast>>>()
-    private val _dailyForecast = MediatorLiveData<Resource<List<DailyForecast>>>()
-    private val _isLoading = MutableLiveData<Resource.Status>()
 
 
-    val currentCondition: LiveData<Resource<CurrentCondition>> get() = _currentCondition
+    val currentCondition: LiveData<CurrentCondition> get() = _currentCondition
     val hourlyForecast: LiveData<Resource<List<HourlyForecast>>> get() = _hourlyForecast
-    val dailyForecast: LiveData<Resource<List<DailyForecast>>> get() = _dailyForecast
-    val isLoading: LiveData<Resource.Status> get() = _isLoading
 
+    //return temperature font color
+    val temperatureColorRes:Int get() {
+        return currentCondition.value?.temperature?.metric?.value?.let {
+             when {
+                it <= -10.0 -> R.color.colorBlue600
+                it in -10.0..20.0 -> R.color.colorPrimaryText
+                it >= 20.0 -> R.color.colorRed600
+                else -> R.color.colorPrimaryText
+            }
+        }?:R.color.colorPrimaryText
+    }
 
     // PUBLIC ACTIONS ---
     fun loadDetailsWhenActivityStarts(locationKey: String) {
         argsLocationKey = locationKey
-        getCurrentConditionDetail(locationKey, false)
+        getCurrentConditionDetail(argsLocationKey, false)
         getHourlyForecastDetail(argsLocationKey, false)
-        getDailyForecastDetail(argsLocationKey, false)
     }
 
 
     fun reloadDataWhenForecastRefreshes() {
         getCurrentConditionDetail(argsLocationKey, true)
         getHourlyForecastDetail(argsLocationKey, true)
-        getDailyForecastDetail(argsLocationKey, true)
     }
 
 
@@ -77,7 +76,7 @@ class DetailViewModel(
             }
 
             _currentCondition.addSource(currentConditionSource) {
-                _currentCondition.value = it
+                    _currentCondition.value = it.data
                 if (it.status == Resource.Status.ERROR) _snackbarError.value =
                     Event(R.string.an_error_happened)
             }
@@ -102,23 +101,4 @@ class DetailViewModel(
         }
     }
 
-
-    private fun getDailyForecastDetail(key: String, forceRefresh: Boolean): Job {
-        return viewModelScope.launch(dispatchers.main) {
-            // We make sure there is only one source of livedata (allowing us properly refresh)
-            _dailyForecast.removeSource(dailyForecastSource)
-
-            withContext(dispatchers.io) {
-                dailyForecastSource =
-                    getDailyForecastUseCase(forceRefresh = forceRefresh, key = key)
-            }
-
-            _dailyForecast.addSource(dailyForecastSource) {
-                _dailyForecast.value = it
-                if (it.status == Resource.Status.ERROR) _snackbarError.value =
-                    Event(R.string.an_error_happened)
-            }
-        }
-
-    }
 }

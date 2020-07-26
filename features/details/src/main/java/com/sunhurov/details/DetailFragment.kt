@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.sunhurov.common.base.BaseFragment
 import com.sunhurov.common.base.BaseViewModel
 import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.model.CurrentCondition
 import com.sunhurov.detail.databinding.FragmentDetailBinding
+import com.sunhurov.details.views.DetailAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 /**
  * A simple [BaseFragment] subclass
- * that will show the [CurrentCondition], [HourlyForecast], [DailyForecast] details.
+ * that will show the [CurrentCondition], [HourlyForecast] details.
  */
 class DetailFragment : BaseFragment() {
 
@@ -34,10 +37,21 @@ class DetailFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        configureRecyclerView()
+    }
+
+
+    private fun configureRecyclerView() {
+        binding.fragmentDetailRv.also {
+            it.adapter = DetailAdapter(viewModel)
+        }
+    }
 
     override fun onResume() {
         super.onResume()
-//        viewModel.loadDetailsWhenActivityStarts(args.key)
+        viewModel.loadDetailsWhenActivityStarts(args.key)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

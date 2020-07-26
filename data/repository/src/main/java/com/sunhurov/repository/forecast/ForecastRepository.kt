@@ -12,5 +12,4 @@ import com.sunhurov.repository.utils.Resource
 interface ForecastRepository {
     suspend fun getCurrentCondition(locationKey:String, forceRefresh: Boolean): LiveData<Resource<CurrentCondition>>
     suspend fun getHourlyForecast(locationKey:String, forceRefresh: Boolean): LiveData<Resource<List<HourlyForecast>>>
-    suspend fun getDailyForecast(locationKey:String, forceRefresh: Boolean): LiveData<Resource<List<DailyForecast>>>
 }

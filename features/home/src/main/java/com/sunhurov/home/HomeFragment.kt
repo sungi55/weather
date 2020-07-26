@@ -54,7 +54,6 @@ class HomeFragment : BaseFragment() {
     private fun configureRecyclerView() {
         binding.fragmentHomeRv.also {
             it.adapter = HomeAdapter(viewModel)
-            it.addItemDecoration(DividerItemDecoration(it.context, DividerItemDecoration.VERTICAL))
         }
     }
 

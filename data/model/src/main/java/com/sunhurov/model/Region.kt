@@ -7,14 +7,11 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
-@Entity
-data class Country(
+data class Region(
 
     @SerializedName("ID")
-    @ColumnInfo(name = "country_code")
-    var iD: String? = null,
+    var id: String? = null,
 
-    @ColumnInfo(name = "country_localized_name")
     @SerializedName("LocalizedName")
     var localizedName: String? = null
 )

@@ -11,5 +11,5 @@ import org.koin.dsl.module
 val repositoryModule = module {
     factory { AppDispatchers(Dispatchers.Main, Dispatchers.IO) }
     factory<LocationRepository> { LocationRepositoryImpl(get(), get()) }
-    factory<ForecastRepository> { ForecastRepositoryImpl(get(), get(), get(), get()) }
+    factory<ForecastRepository> { ForecastRepositoryImpl(get(), get(), get()) }
 }

@@ -59,7 +59,6 @@ class SearchFragment : BaseFragment() {
     private fun configureRecyclerView() {
         binding.fragmentSearchRv.also {
             it.adapter = SearchAdapter(viewModel)
-            it.addItemDecoration(DividerItemDecoration(it.context, DividerItemDecoration.VERTICAL))
         }
     }
 

@@ -19,6 +19,7 @@
             android:id="@+id/fragment_search_swipe_to_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorBackground"
             app:onRefreshListener="@{() -> viewmodel.locationsRefreshesItems()}"
             app:showWhenLoading="@{viewmodel.locations}">
 
@@ -37,6 +38,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/colorTextWhite"
                     android:id="@+id/fragment_search_text_view_empty_list"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_search_image_empty_list"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -45,10 +47,10 @@
                     android:visibility="gone"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/default_icon_width"
+                    android:layout_height="@dimen/default_icon_height"
                     app:showWhenEmptyList="@{viewmodel.locations}"
-                    app:srcCompat="@drawable/ic_error_black_24dp"
+                    app:srcCompat="@drawable/ic_sunny"
                     android:id="@+id/fragment_search_image_empty_list"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,8 +61,7 @@
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/fragment_search_text_view_empty_list"
                     app:layout_constraintHorizontal_bias="0.5"
-                    android:visibility="gone"
-                    android:tint="#414141"/>
+                    android:visibility="gone"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/fragment_search_rv"

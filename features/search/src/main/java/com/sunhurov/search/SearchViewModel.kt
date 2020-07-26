@@ -81,7 +81,7 @@ class SearchViewModel(
     }
 
     private fun openDetailFragment(location: Location) {
-        navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(location.key))
+        navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(location.key, location.localizedName!!))
     }
 
 }

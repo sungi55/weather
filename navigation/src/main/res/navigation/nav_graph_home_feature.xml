@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph_home_feature"
-            app:startDestination="@id/homeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_home_feature"
+    app:startDestination="@id/homeFragment">
 
     <!-- HOME FRAGMENT -->
     <fragment android:id="@+id/homeFragment"
-              android:name="com.sunhurov.home.HomeFragment"
-              android:label="Weather">
+        android:name="com.sunhurov.home.HomeFragment"
+        android:label="Weather App">
 
         <!-- Go to Detail Fragment (Its graph is responsible to handle response) -->
         <action android:id="@+id/action_homeFragment_to_detailFragment"
-                app:destination="@id/nav_graph_detail_feature">
+            app:destination="@id/nav_graph_detail_feature"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="key"
+                app:argType="string" />
+
+            <argument
+                android:name="title"
                 app:argType="string" />
         </action>
 
         <!-- Go to Search Fragment (Its graph is responsible to handle response) -->
         <action android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/nav_graph_search_feature">
+            app:destination="@id/nav_graph_search_feature"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
         </action>
 
     </fragment>

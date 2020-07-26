@@ -10,6 +10,11 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
+
+    <color name="colorBackground">#607D8B</color>
+
+    <color name="colorTextWhite">#FFFFFF</color>
+
     <color name="colorRed600">#e53935</color>
     <color name="colorBlue600">#1e88e5</color>
 

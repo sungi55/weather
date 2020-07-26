@@ -29,7 +29,7 @@ class HomeViewModel(
 
     // PUBLIC ACTIONS ---
     fun locationClicksOnItem(location: Location) {
-        navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(location.key))
+        navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(location.key, location.localizedName!!))
     }
 
     fun locationClicksOnClear(location: Location) = deleteLocation(location)

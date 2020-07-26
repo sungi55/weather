@@ -1,29 +1,39 @@
 package com.sunhurov.model
 
+
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import java.util.*
 import java.util.concurrent.TimeUnit
-
-/**
- * Created by Yurii Sunhurov on 24.07.2020
- */
 
 @Entity
 data class HourlyForecast(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id:Int,
 
-    val min:Int,
+    var key:String,
 
-    val max:Int,
+    @SerializedName("DateTime")
+    var dateTime: String? = null,
 
-    val icon:Int,
+    @SerializedName("EpochDateTime")
+    var epochDateTime: Int? = null,
 
-    val metric: String,
+    @SerializedName("IconPhrase")
+    var iconPhrase: String? = null,
 
-    val time:Long,
+    @SerializedName("IsDaylight")
+    var isDaylight: Boolean? = null,
+
+    @Embedded(prefix = "hourly_temp_")
+    @SerializedName("Temperature")
+    var temperature: Metric? = null,
+
+    @SerializedName("WeatherIcon")
+    var weatherIcon: Int? = null,
 
     var lastRefreshed: Date
 

@@ -1,8 +1,6 @@
 package com.sunhurov.details.domain
 
 import androidx.lifecycle.LiveData
-import com.sunhurov.model.CurrentCondition
-import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.repository.forecast.ForecastRepository
 import com.sunhurov.repository.utils.Resource

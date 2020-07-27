@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.sunhurov.common.base.BaseFragment
 import com.sunhurov.common.base.BaseViewModel
-import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.model.CurrentCondition
 import com.sunhurov.detail.databinding.FragmentDetailBinding

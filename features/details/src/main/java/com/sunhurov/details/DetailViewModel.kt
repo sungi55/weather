@@ -7,7 +7,6 @@ import com.sunhurov.detail.R
 import com.sunhurov.details.domain.GetCurrentConditionUseCase
 import com.sunhurov.details.domain.GetHourlyForecastUseCase
 import com.sunhurov.model.CurrentCondition
-import com.sunhurov.model.DailyForecast
 import com.sunhurov.model.HourlyForecast
 import com.sunhurov.repository.AppDispatchers
 import com.sunhurov.repository.utils.Resource
@@ -33,21 +32,9 @@ class DetailViewModel(
     private val _currentCondition = MediatorLiveData<CurrentCondition>()
     private val _hourlyForecast = MediatorLiveData<Resource<List<HourlyForecast>>>()
 
-
     val currentCondition: LiveData<CurrentCondition> get() = _currentCondition
     val hourlyForecast: LiveData<Resource<List<HourlyForecast>>> get() = _hourlyForecast
 
-    //return temperature font color
-    val temperatureColorRes:Int get() {
-        return currentCondition.value?.temperature?.metric?.value?.let {
-             when {
-                it <= -10.0 -> R.color.colorBlue600
-                it in -10.0..20.0 -> R.color.colorPrimaryText
-                it >= 20.0 -> R.color.colorRed600
-                else -> R.color.colorPrimaryText
-            }
-        }?:R.color.colorPrimaryText
-    }
 
     // PUBLIC ACTIONS ---
     fun loadDetailsWhenActivityStarts(locationKey: String) {

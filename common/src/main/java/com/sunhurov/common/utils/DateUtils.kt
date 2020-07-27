@@ -19,8 +19,10 @@ object DateUtils {
 
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH)
             val formatter = SimpleDateFormat("HH:mm")
-            finalString = formatter.format(parser.parse(stringDate))
 
+             finalString = stringDate
+                ?.let { parser.parse(it) }
+                ?.let { formatter.format(it) }
 
         } catch (e: ParseException) {
             e.printStackTrace()
